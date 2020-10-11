@@ -27,48 +27,62 @@ public class MainActivity extends AppCompatActivity {
 
     public void somar(View v)
     {
-        calc.setValor1(Double.parseDouble(valor1.getText().toString()));
+        if(!valor1.getText().toString().matches("") && !valor2.getText().toString().matches(""))
+        {
+            calc.setValor1(Double.parseDouble(valor1.getText().toString()));
 
-        calc.setValor2(Double.parseDouble(valor2.getText().toString()));
+            calc.setValor2(Double.parseDouble(valor2.getText().toString()));
 
-        resultado.setText(String.format("%.3f", calc.somar()));
+            resultado.setText(String.format("%.3f", calc.somar()));
+        }
+
     }
 
     public void subtrair(View v)
     {
-        calc.setValor1(Double.parseDouble(valor1.getText().toString()));
+        if(!valor1.getText().toString().matches("") && !valor2.getText().toString().matches(""))
+        {
+            calc.setValor1(Double.parseDouble(valor1.getText().toString()));
 
-        calc.setValor2(Double.parseDouble(valor2.getText().toString()));
+            calc.setValor2(Double.parseDouble(valor2.getText().toString()));
 
-        resultado.setText(String.format("%.3f", calc.subtrair()));
+            resultado.setText(String.format("%.3f", calc.subtrair()));
+        }
 
     }
 
     public void multiplicar(View v)
     {
-        calc.setValor1(Double.parseDouble(valor1.getText().toString()));
+        if(!valor1.getText().toString().matches("") && !valor2.getText().toString().matches(""))
+        {
+            calc.setValor1(Double.parseDouble(valor1.getText().toString()));
 
-        calc.setValor2(Double.parseDouble(valor2.getText().toString()));
+            calc.setValor2(Double.parseDouble(valor2.getText().toString()));
 
-        resultado.setText(String.format("%.3f", calc.multiplicar()));
+            resultado.setText(String.format("%.3f", calc.multiplicar()));
+        }
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void dividir(View v)
     {
-        calc.setValor1(Double.parseDouble(valor1.getText().toString()));
-
-        calc.setValor2(Double.parseDouble(valor2.getText().toString()));
-
-        if(calc.dividir() == null)
+        if(!valor1.getText().toString().matches("") && !valor2.getText().toString().matches(""))
         {
-            resultado.setText("É impossível dividir por zero");
+            calc.setValor1(Double.parseDouble(valor1.getText().toString()));
+
+            calc.setValor2(Double.parseDouble(valor2.getText().toString()));
+
+            if(calc.dividir() == null)
+            {
+                resultado.setText("É impossível dividir por zero");
+            }
+            else
+            {
+                resultado.setText(String.format("%.3f", calc.dividir().getAsDouble()));
+            }
         }
-        else
-        {
-            resultado.setText(String.format("%.3f", calc.dividir().getAsDouble()));
-        }
+
 
     }
 }
