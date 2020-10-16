@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     EditText valor1, valor2, resultado;
     Spinner spinner;
 
-    com.example.calculadoraversao2.Calculadora calc = new com.example.calculadoraversao2.Calculadora();
+    Calculadora calc = new Calculadora();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void calcular(View v) {
 
         if (!valor1.getText().toString().matches("") && !valor2.getText().toString().matches("")) {
