@@ -41,30 +41,30 @@ public class MainActivity extends AppCompatActivity {
     public void calcular(View v)
     {
         if(!valor1.getText().toString().matches("") && !valor2.getText().toString().matches(""))
+    {
+        calc.setValor1(Double.parseDouble(valor1.getText().toString()));
+
+        calc.setValor2(Double.parseDouble(valor2.getText().toString()));
+
+        if(rbSomar.isChecked())
         {
-            calc.setValor1(Double.parseDouble(valor1.getText().toString()));
-
-            calc.setValor2(Double.parseDouble(valor2.getText().toString()));
-
-            if(rbSomar.isChecked())
-            {
-                resultado.setText(somar());
-            }
-            else if(rbSubtrair.isChecked())
-            {
-                resultado.setText(subtrair());
-            }
-            else if(rbMultiplicar.isChecked())
-            {
-                resultado.setText(multiplicar());
-            }
-            else
-            {
-                resultado.setText(dividir());
-            }
+            resultado.setText(somar());
         }
-
+        else if(rbSubtrair.isChecked())
+        {
+            resultado.setText(subtrair());
+        }
+        else if(rbMultiplicar.isChecked())
+        {
+            resultado.setText(multiplicar());
+        }
+        else
+        {
+            resultado.setText(dividir());
+        }
     }
+
+}
 
     public String somar()
     {

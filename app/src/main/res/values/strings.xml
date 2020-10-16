@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CalculadoraVersao3</string>
+    <string-array name="opcoes">
+        <item>Somar</item>
+        <item>Subtrair</item>
+        <item>Multiplicar</item>
+        <item>Dividir</item>
+    </string-array>
+
+</resources>
