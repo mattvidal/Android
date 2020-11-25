@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText edtPeso, edtAltura, edtImc, edtSitucao, edNome;
-    CheckBox chkIdade;
-    RadioButton rbFeminino, rbMasculino;
+    EditText editTextNome, editTextIdade, editTextEndereco, editTextPeso, editTextAltura, editTextTipoSang, editTextContatoEmergencia, editTextTelefoneEmergencia;
+    CheckBox cbDiabetes, cbHipertensao;
     // declaração do objeto para o armazenamento das preferências
     SharedPreferences prefs;
 
@@ -23,14 +23,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        edtPeso = (EditText) findViewById(R.id.editTextNome);
-        edtAltura = (EditText) findViewById(R.id.editTextAltura);
-        edtImc = (EditText) findViewById(R.id.editTextImc);
-        edtSitucao = (EditText) findViewById(R.id.editTextSituacao);
-        chkIdade = (CheckBox) findViewById(R.id.checkBoxIdade);
-        rbFeminino = (RadioButton) findViewById(R.id.radioButtonFeminino);
-        rbMasculino = (RadioButton) findViewById(R.id.radioButtonMasculino);
-        edNome = (EditText) findViewById(R.id.editTextNome);
+
+        editTextNome = (EditText) findViewById(R.id.editTextNome);
+        editTextIdade = (EditText) findViewById(R.id.editTextIdade);
+        editTextEndereco = (EditText) findViewById(R.id.editTextEndereco);
+        editTextPeso = (EditText) findViewById(R.id.editTextPeso);
+        editTextAltura = (EditText) findViewById(R.id.editTextAltura);
+        editTextTipoSang = (EditText) findViewById(R.id.editTextTipoSang);
+        editTextContatoEmergencia = (EditText) findViewById(R.id.editTextContatoEmergencia);
+        editTextTelefoneEmergencia = (EditText) findViewById(R.id.editTextTelefoneEmergencia);
+        cbDiabetes = (CheckBox) findViewById(R.id.cbDiabetes);
+        cbHipertensao = (CheckBox) findViewById(R.id.cbHipertensao);
+
         // definição do arquivo de preferências com o nome do arquivo
         // e o modo de compartilhamento de dados privado
         prefs = getSharedPreferences("dadosUsuario", MODE_PRIVATE);
@@ -43,54 +47,93 @@ public class MainActivity extends AppCompatActivity {
         // verifica se o dado com o nome está disponível no arquivo
         // de preferências e preenche o componente, caso contrário
         // preenche o componente com um texto padrão
+
         if (prefs.contains("nome")) {
-            edNome.setText(prefs.getString("nome", ""));
+            editTextNome.setText(prefs.getString("nome", ""));
         } else {
-            edNome.setText("Digite o seu nome!");
+            editTextNome.setText("");
         }
+
+        if (prefs.contains("endereco")) {
+            editTextEndereco.setText(prefs.getString("endereco", ""));
+        } else {
+            editTextEndereco.setText("");
+        }
+
+        if (prefs.contains("tipoSang")) {
+            editTextTipoSang.setText(prefs.getString("tipoSang", ""));
+        } else {
+            editTextTipoSang.setText("");
+        }
+
+        if (prefs.contains("contatoEmergencia")) {
+            editTextContatoEmergencia.setText(prefs.getString("contatoEmergencia", ""));
+        } else {
+            editTextContatoEmergencia.setText("");
+        }
+
+        if (prefs.contains("telefoneEmergencia")) {
+            editTextTelefoneEmergencia.setText(prefs.getString("telefoneEmergencia", ""));
+        } else {
+            editTextTelefoneEmergencia.setText("");
+        }
+
+
         // verifica se o dado com o peso está disponível no arquivo
         // de preferências e preenche o componente, caso contrário
         // preenche o componente com valor 0.0 (zero.zero)
         if (prefs.contains("peso")) {
-            edtPeso.setText(String.valueOf(prefs.getFloat("peso", 0.0f)));
+            editTextPeso.setText(String.valueOf(prefs.getFloat("peso", 0.0f)));
         } else {
-            edtPeso.setText("0.0");
+            editTextPeso.setText("");
         }
+
         // verifica se o dado com a altura está disponível no arquivo
         // de preferências e preenche o componente, caso contrário
-        // preenche o componente com valor 0.0 (zero.zero)
+        // preenche o componente com valor 0.0 (zero.zero)
         if (prefs.contains("altura")) {
-            edtAltura.setText(String.valueOf(prefs.getFloat("altura", 0.0f)));
+            editTextAltura.setText(String.valueOf(prefs.getFloat("altura", 0.0f)));
         } else {
-            edtAltura.setText("0.0");
+            editTextAltura.setText("");
         }
-        // verifica se o dado com o sexo está disponível no arquivo
-        // de preferências e seleciona o componente radioButton adequado,
-        // com caso contrário seleciona o componente padrão (feminino)
-        if (prefs.contains("sexo")) {
-            if (prefs.getBoolean("sexo", true)) {
-                // caso verdadeiro (true), seleciona o radioButton do sexo feminino
-                rbFeminino.setChecked(true);
-            } else {
-                // caso false (falso), seleciona o radioButton do sexo masculino
-                rbMasculino.setChecked(true);
-            }
+
+        // verifica se o dado com a idade está disponível no arquivo
+        // de preferências e preenche o componente, caso contrário
+        // preenche o componente com valor 0.0 (zero.zero)
+        if (prefs.contains("idade")) {
+            editTextIdade.setText(String.valueOf(prefs.getInt("idade", 0)));
         } else {
-            rbFeminino.setChecked(true);
+            editTextIdade.setText("");
         }
+
         // verifica se o dado com a idade está disponível no arquivo
         // de preferências e seleciona se o valor foi true o componente checkbox,
         // com caso contrário o checkbox ficará desmarcado
-        if (prefs.contains("idade")) {
-            if (prefs.getBoolean("idade", true)) {
+        if (prefs.contains("diabetes")) {
+            if (prefs.getBoolean("diabetes", false)) {
                 // caso verdadeiro (true), seleciona o checkbox
-                chkIdade.setChecked(true);
+                cbDiabetes.setChecked(true);
             } else {
                 // caso false (falso), desmarca o checkbox
-                chkIdade.setChecked(true);
+                cbDiabetes.setChecked(false);
             }
         } else {
-            chkIdade.setChecked(false);
+            cbDiabetes.setChecked(false);
+        }
+
+        // verifica se o dado com a idade está disponível no arquivo
+        // de preferências e seleciona se o valor foi true o componente checkbox,
+        // com caso contrário o checkbox ficará desmarcado
+        if (prefs.contains("hipertensao")) {
+            if (prefs.getBoolean("hipertensao", false)) {
+                // caso verdadeiro (true), seleciona o checkbox
+                cbHipertensao.setChecked(true);
+            } else {
+                // caso false (falso), desmarca o checkbox
+                cbHipertensao.setChecked(false);
+            }
+        } else {
+            cbHipertensao.setChecked(false);
         }
 
     }
@@ -99,20 +142,29 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor prefUsuario = prefs.edit();
         // determina os pares chave o valor de cada dado do arquivo de preferências
         // para texto (String)
-        prefUsuario.putString("nome", edNome.getText().toString());
+        prefUsuario.putString("nome", editTextNome.getText().toString());
+        prefUsuario.putString("endereco", editTextEndereco.getText().toString());
+        prefUsuario.putString("tipoSang", editTextTipoSang.getText().toString());
+        prefUsuario.putString("contatoEmergencia", editTextContatoEmergencia.getText().toString());
+        prefUsuario.putString("telefoneEmergencia", editTextTelefoneEmergencia.getText().toString());
+
         // para real (float)
-        prefUsuario.putFloat("peso", Float.parseFloat(edtPeso.getText().toString()));
-        prefUsuario.putFloat("altura", Float.parseFloat(edtAltura.getText().toString()));
+        prefUsuario.putFloat("peso", Float.parseFloat(editTextPeso.getText().toString()));
+        prefUsuario.putFloat("altura", Float.parseFloat(editTextAltura.getText().toString()));
+
+        // para inteiro (int)
+        prefUsuario.putInt("idade", Integer.parseInt(editTextIdade.getText().toString()));
+
         // para booleano (boolen)
-        if(rbFeminino.isChecked()){
-            prefUsuario.putBoolean("sexo", true);
+        if(cbDiabetes.isChecked()){
+            prefUsuario.putBoolean("diabetes", true);
         } else{
-            prefUsuario.putBoolean("sexo", false);
+            prefUsuario.putBoolean("diabetes", false);
         }
-        if(chkIdade.isChecked()){
-            prefUsuario.putBoolean("idade", true);
+        if(cbHipertensao.isChecked()){
+            prefUsuario.putBoolean("hipertensao", true);
         } else{
-            prefUsuario.putBoolean("idade", false);
+            prefUsuario.putBoolean("hipertensao", false);
         }
         // confirma a alteração
         prefUsuario.apply();
