@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     // declaração do objeto para o armazenamento das preferências
     SharedPreferences prefs;
 
+    public Formulario formulario = new Formulario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         editTextTelefoneEmergencia = (EditText) findViewById(R.id.editTextTelefoneEmergencia);
         cbDiabetes = (CheckBox) findViewById(R.id.cbDiabetes);
         cbHipertensao = (CheckBox) findViewById(R.id.cbHipertensao);
+
 
         // definição do arquivo de preferências com o nome do arquivo
         // e o modo de compartilhamento de dados privado
@@ -138,35 +141,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void salvar(View v){
-        // abre o arquivo de preferências para edição
-        SharedPreferences.Editor prefUsuario = prefs.edit();
-        // determina os pares chave o valor de cada dado do arquivo de preferências
-        // para texto (String)
-        prefUsuario.putString("nome", editTextNome.getText().toString());
-        prefUsuario.putString("endereco", editTextEndereco.getText().toString());
-        prefUsuario.putString("tipoSang", editTextTipoSang.getText().toString());
-        prefUsuario.putString("contatoEmergencia", editTextContatoEmergencia.getText().toString());
-        prefUsuario.putString("telefoneEmergencia", editTextTelefoneEmergencia.getText().toString());
 
-        // para real (float)
-        prefUsuario.putFloat("peso", Float.parseFloat(editTextPeso.getText().toString()));
-        prefUsuario.putFloat("altura", Float.parseFloat(editTextAltura.getText().toString()));
 
-        // para inteiro (int)
-        prefUsuario.putInt("idade", Integer.parseInt(editTextIdade.getText().toString()));
+        formulario.setNome(editTextNome.getText().toString());
+        formulario.setIdade(Integer.parseInt(editTextIdade.getText().toString()));
+        formulario.setEndereco(editTextEndereco.getText().toString());
+        formulario.setPeso(Double.parseDouble(editTextPeso.getText().toString()));
+        formulario.setAltura(Double.parseDouble(editTextAltura.getText().toString()));
+        formulario.setTipoSanguineo(editTextTipoSang.getText().toString());
+        formulario.setContatoEmergencia(editTextContatoEmergencia.getText().toString());
+        formulario.setTelefoneEmergencia(editTextTelefoneEmergencia.getText().toString());
 
-        // para booleano (boolen)
-        if(cbDiabetes.isChecked()){
-            prefUsuario.putBoolean("diabetes", true);
-        } else{
-            prefUsuario.putBoolean("diabetes", false);
+        if(cbDiabetes.isChecked())
+        {
+            formulario.setDiabetes(true);
         }
-        if(cbHipertensao.isChecked()){
-            prefUsuario.putBoolean("hipertensao", true);
-        } else{
-            prefUsuario.putBoolean("hipertensao", false);
+        else
+        {
+            formulario.setDiabetes(false);
         }
-        // confirma a alteração
+
+        if(cbHipertensao.isChecked())
+        {
+            formulario.setHipertensao(true);
+        }
+        else
+        {
+            formulario.setHipertensao(false);
+        }
+
+        SharedPreferences.Editor prefUsuario = formulario.salvar(v, prefs);
+
         prefUsuario.apply();
         // mensagem de aviso ao usuário
         Toast.makeText(getApplicationContext(), "Suas preferências foram salvas!\nAguarde alguns instantes para sair.", Toast.LENGTH_LONG).show();
