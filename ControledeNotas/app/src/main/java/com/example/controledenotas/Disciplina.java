@@ -70,9 +70,9 @@ public class Disciplina {
     public String textoLista() {
         String item;
         item = getNome();
-        item += "\nA1: " + String.format("%3.1f", getA1());
-        item += "\tA2: " + String.format("%3.1f", getA2());
-        item += "\tA3: " + String.format("%3.1f", getA3());
+        item += "\nAv1: " + String.format(" %3.1f", getA1());
+        item += "\t Av2: " + String.format(" %3.1f", getA2());
+        item += "\t Av3: " + String.format(" %3.1f", getA3());
         return item;
     }
 }

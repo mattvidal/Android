@@ -30,10 +30,10 @@ public class TratarDisciplina extends AppCompatActivity {
             setTitle("Inserir Disciplina");
             bt1.setText("Incluir");
             bt2.setEnabled(false);
-            ed1.setText("Nome Disciplina");
-            ed2.setText(String.format("%.1f", 0.0));
-            ed3.setText(String.format("%.1f", 0.0));
-            ed4.setText(String.format("%.1f", 0.0));
+            ed1.setText("");
+            ed2.setText("");
+            ed3.setText("");
+            ed4.setText("");
         } else {
             // alteração ou exclusão
             setTitle("Alterar ou Excluir Disciplina");
