@@ -6,12 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a33e9886-b629-4294-93d7-5172410d4038" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../CalculadoraVersao2/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CalculadoraVersao2/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CalculadoraVersao2/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CalculadoraVersao2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CalculadoraVersao2/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Emergencia/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Emergencia/app/src/main/res/values/strings.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a33e9886-b629-4294-93d7-5172410d4038" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
