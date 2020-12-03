@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void incluirPessoa(View v) {
-        intent = new Intent(getApplicationContext(), TratarPessoa.class);
+        intent = new Intent(MainActivity.this, TratarPessoa.class);
         intent.putExtra("acao", -1);
         intent.putExtra("id", 0L);
         startActivity(intent);

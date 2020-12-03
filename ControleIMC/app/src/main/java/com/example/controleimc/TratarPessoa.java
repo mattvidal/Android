@@ -46,8 +46,7 @@ public class TratarPessoa extends AppCompatActivity {
             ed2.setText("");
             ed3.setText("");
             ed4.setText("");
-            rb1.setText("");
-            rb2.setText("");
+
         } else {
             // alteração ou exclusão
             setTitle("Alterar ou Excluir Pessoa");
@@ -61,25 +60,26 @@ public class TratarPessoa extends AppCompatActivity {
             ed4.setText(String.format("%d", aux.getIdade()));
             //ed5.setText(String.format("%b", aux.getSexo()));
 
-            if(aux.getSexo()) //Masculino
-            {
-                rb2.setChecked(true);
-                rb1.setChecked(false);
-            }
-            else //feminino
+            if(aux.getSexo() == 1) //feminino
             {
                 rb2.setChecked(false);
                 rb1.setChecked(true);
+            }
+            else //masculino
+            {
+                rb2.setChecked(true);
+                rb1.setChecked(false);
             }
             dao.close();
         }
     }
     public void alterarInserir(View v) {
-        String nome;
+        String nome, situacao = " ";
         double peso;
         double altura;
+        double imc = 0.0;
         int idade;
-        boolean sexo;
+        int sexo;
 
         nome = ed1.getText().toString();
         peso = Double.parseDouble(ed2.getText().toString());
@@ -89,20 +89,20 @@ public class TratarPessoa extends AppCompatActivity {
 
         if(rb1.isChecked()) //feminino
         {
-            sexo = false;
+            sexo = 1;
         }
         else //masculino
         {
-            sexo = true;
+            sexo = 2;
         }
 
         Pessoa_DAO dao = new Pessoa_DAO(this);
         dao.open();
         if (acao == -1) { // inserção
-            dao.inserir(nome, peso, altura, idade, sexo);
+            dao.inserir(nome, peso, altura, idade, sexo, imc, situacao);
         }
         else{ // alteração
-            dao.alterar(id, nome, peso, altura, idade, sexo);
+            dao.alterar(id, nome, peso, altura, idade, sexo, imc, situacao);
         }
 
         dao.close();

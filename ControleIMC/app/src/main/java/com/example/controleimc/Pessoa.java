@@ -5,8 +5,10 @@ public class Pessoa {
     private String nome;
     private Double peso;
     private Double altura;
+    private Double imc;
     private int idade;
-    private Boolean sexo;
+    private int sexo;
+    private String situacao;
 
     public long getId() {
         return id;
@@ -48,12 +50,28 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public Boolean getSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(Boolean sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
+    }
+
+    public Double getImc() {
+        return imc;
+    }
+
+    public void setImc(Double imc) {
+        this.imc = imc;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     public Pessoa()
@@ -62,17 +80,19 @@ public class Pessoa {
         peso = 0.0;
         altura = 0.0;
         idade = 0;
+        situacao = " ";
     }
 
     // método de formatação dos dados para exibição na lista
     public String textoLista() {
         String item;
         item = getNome();
-        item += "\nNome: " + String.format(" %3.1f", getNome());
-        item += "\t Peso: " + String.format(" %3.1f", getPeso());
-        item += "\t Altura: " + String.format(" %3.1f", getAltura());
-        item += "\t Idade: " + String.format(" %3.1f", getIdade());
-        item += "\t Sexo: " + String.format(" %3.1f", getSexo());
+        item += "\t Peso: " + getPeso();
+        item += "\t Altura: " + getAltura();
+        item += "\t Idade: " + getIdade();
+        item += "\t Sexo: " + ((getSexo() == 1) ? "Feminino" : "Masculino");
+        item += "\t IMC: " + String.format("%.2f", getImc());
+        item += "\t Situação: " + getSituacao();
         return item;
     }
 }

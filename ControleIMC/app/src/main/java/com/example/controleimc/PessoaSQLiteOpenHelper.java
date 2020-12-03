@@ -14,11 +14,13 @@ public class PessoaSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COLUNA_ALTURA = " altura ";
     public static final String COLUNA_IDADE = " idade ";
     public static final String COLUNA_SEXO = " sexo ";
+    public static final String COLUNA_IMC = " imc ";
+    public static final String COLUNA_SITUACAO = " situacao ";
 
     // nomeia o banco de dados
     private static final String DATABASE_NAME = "pessoas.db";
     // determina a versão do banco
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // prepara a criação da tabela se não existir
     private static final String CRIAR_BANCO = " create table "
             + TABELA + "("
@@ -27,7 +29,9 @@ public class PessoaSQLiteOpenHelper extends SQLiteOpenHelper {
             + COLUNA_PESO + " double not null , "
             + COLUNA_ALTURA + " double not null , "
             + COLUNA_IDADE + " integer not null , "
-            + COLUNA_SEXO + " integer not null ) ;";
+            + COLUNA_SEXO + " integer not null, "
+            + COLUNA_IMC + " double not null, "
+            + COLUNA_SITUACAO + " text not null ) ;";
     // construtor
     public PessoaSQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
